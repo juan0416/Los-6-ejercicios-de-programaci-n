@@ -1,0 +1,58 @@
+Algoritmo AgroInsumosdelValle
+	Definir sacos_disponibles,opcion,cantidad, stock como enteros
+	Definir subtotal, descuento, total_pagar,recaudo_total como real
+	Repetir
+		Escribir "Ingrese la cantidad de sacos disponibles"
+		Leer sacos_disponibles
+		si sacos_disponibles <= 0
+			Escribir "Error, digite un número mayor a 0"
+		FinSi
+	Hasta Que sacos_disponibles > 0
+	
+	stock = sacos_disponibles
+	recaudo_total = 0
+	
+    Si sacos_disponibles > 0
+		Repetir
+			Escribir " Menú "
+			Escribir " 1. Realizar una venta "
+			Escribir " 2. Consultar stock disponible en tiempo real "
+			Escribir " 3. Realizar cierre de caja para salir "
+			Leer opcion 
+			si opcion = 1 Entonces
+				Escribir "Digite la cantidad de sacos que desea llevar"
+				leer cantidad
+				si cantidad > stock Entonces
+					Escribir "No hay suficientes sacos disponibles"
+				SiNo
+					subtotal = cantidad * 85000
+					stock = stock - cantidad
+					si cantidad >= 10 entonces
+						descuento = (subtotal * 8 ) / 100
+					SiNo
+						descuento = 0
+					FinSi
+			
+				total_pagar = subtotal - descuento
+				Escribir "El total de la venta es de ", total_pagar
+				
+				recaudo_total = recaudo_total + total_pagar
+			FinSi
+			
+				
+			FinSi
+			
+			si opcion = 2 Entonces
+				Escribir " Quedan ",stock ," sacos"
+			FinSi
+			si opcion = 3 Entonces
+				Escribir "El total recaudado es ", recaudo_total
+				Escribir "Cantidad de sacos restantes ", stock
+			FinSi
+		Hasta Que opcion = 3
+		
+		
+		
+	FinSi
+	
+FinAlgoritmo
