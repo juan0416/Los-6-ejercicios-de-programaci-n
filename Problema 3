@@ -1,0 +1,90 @@
+Algoritmo Auditoríaycalificaciones
+	Definir opcion, total_estudiantes, cant_aprobados, cant_recuperacion, cant_reprobados Como Entero
+	Definir nota1, nota2, nota3, nota_final, suma_notas, promedio_general Como Real
+	cant_aprobados = 0
+	cant_recuperacion = 0
+	cant_reprobados = 0
+	suma_notas = 0
+	Repetir
+	Escribir "Menú Principal"
+	Escribir "1. Registrar un estudiante"
+	Escribir "2. Consultar estadísticas del grupo"
+	Escribir "3. Cerrar la aplicación"
+	leer opcion
+	
+
+		si opcion = 1 Entonces
+		Repetir
+			Escribir "Ingrese la primer nota"
+			Leer nota1
+			si nota1 < 0.0 o nota1 > 5.0 Entonces
+				Escribir "Nota no válida. Ingrese un valor dentro del rango"
+			FinSi 
+			
+		Hasta Que nota1 >= 0.0 y nota1 <= 5.0
+		
+		
+		Repetir
+			Escribir "Ingrese la segunda nota"
+			Leer nota2
+			si nota2 < 0.0 o nota2 > 5.0 Entonces
+				Escribir "Nota no válida. Ingrese un valor dentro del rango"
+			FinSi 
+			
+		Hasta Que nota2 >= 0.0 y nota2 <= 5.0
+		
+		
+	
+
+		Repetir
+			Escribir "Ingrese la tercera nota"
+			Leer nota3
+			si nota3 < 0.0 o nota3 > 5.0 Entonces
+				Escribir "Nota no válida. Ingrese un valor dentro del rango"
+			FinSi 
+			
+		Hasta Que nota3 >= 0.0 y nota3 <= 5.0
+	
+	nota1 = (nota1 * 30) / 100
+	nota2 = (nota2 * 30) / 100
+	nota3 = (nota3 * 40) / 100
+	nota_final = nota1 + nota2 + nota3
+	Escribir "La nota definitiva del estudiante es ", nota_final
+	suma_notas = suma_notas + nota_final
+
+
+	si nota_final >= 3.0 Entonces
+		cant_aprobados = cant_aprobados + 1
+		Escribir "El estudiante está aprobado "
+	FinSi
+	si nota_final >= 2.0 y nota_final <= 2.9 Entonces
+		Escribir "El estudiante está en recuperación "
+		cant_recuperacion = cant_recuperacion + 1
+	FinSi
+	si nota_final < 2.0 Entonces
+		Escribir "El estudiante está reprobado "
+		cant_reprobados = cant_reprobados + 1
+	FinSi
+FinSi
+
+	
+	si opcion = 2 Entonces
+		total_estudiantes = cant_aprobados + cant_recuperacion + cant_reprobados
+		si total_estudiantes > 0 Entonces
+			Escribir "el total de estudiantes procesados es de ", total_estudiantes
+			Escribir "La cantidad de estudiantes aprobados es de ", cant_aprobados
+			Escribir "La cantidad de estudiantes en recuperación es de ", cant_recuperacion
+			Escribir "La cantidad de estudiantes reprobados es de ", cant_reprobados
+			promedio_general = suma_notas / total_estudiantes
+			Escribir "El promedio general del grupo es de ", promedio_general
+		SiNo 
+			Escribir "No hay estudiantes registrados"
+		FinSi
+
+		
+	FinSi
+Hasta Que opcion = 3
+	
+
+	
+FinAlgoritmo
