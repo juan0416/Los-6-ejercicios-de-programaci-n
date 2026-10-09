@@ -9,7 +9,7 @@ Algoritmo CentroDeAcopio
 	Repetir
 		Escribir "Menu del centro de acopio"
 		Escribir "1. Registrar lote de fruta"
-		Escribir "2. Ver resumen de recopilación"
+		Escribir "2. Ver resumen de recopilaciÃ³n"
 		Escribir "3. Salir"
 		Leer opcion
 		Si opcion = 1 Entonces
@@ -20,7 +20,7 @@ Algoritmo CentroDeAcopio
 				Leer tipo_fruta
 				
 				Si tipo_fruta < 1 O tipo_fruta > 2 Entonces
-					Escribir "No válido, digite 1 o 2"
+					Escribir "No vÃ¡lido, digite 1 o 2"
 				FinSi
 			Hasta Que tipo_fruta >= 1 Y tipo_fruta <= 2
 			
@@ -74,7 +74,7 @@ Algoritmo CentroDeAcopio
 			Escribir "Resumen del centro de acopio"
 			Escribir "Total de kilogramos recibidos: ", total_kg
 			Escribir "Total de dinero pagado: ", total_pagado
-			Escribir "Peso del lote más pesado: ", mayor_peso
+			Escribir "Peso del lote mÃ¡s pesado: ", mayor_peso
 		FinSi
 		
 		Si opcion = 3 Entonces
