@@ -1,0 +1,92 @@
+Algoritmo CentroDeAcopio
+	Definir opcion, tipo_fruta Como Entero
+	Definir peso, tarifa, valor_base, bono, retencion, total_pagar Como Real
+	Definir total_kg, total_pagado, mayor_peso Como Real
+	total_kg = 0
+	total_pagado = 0
+	mayor_peso = 0
+	
+	Repetir
+		Escribir "Menu del centro de acopio"
+		Escribir "1. Registrar lote de fruta"
+		Escribir "2. Ver resumen de recopilación"
+		Escribir "3. Salir"
+		Leer opcion
+		Si opcion = 1 Entonces
+			Repetir
+				Escribir "Digite el tipo de fruta"
+				Escribir "1. Tipo A (Calidad de exportacion)"
+				Escribir "2. Tipo B (Consumo nacional)"
+				Leer tipo_fruta
+				
+				Si tipo_fruta < 1 O tipo_fruta > 2 Entonces
+					Escribir "No válido, digite 1 o 2"
+				FinSi
+			Hasta Que tipo_fruta >= 1 Y tipo_fruta <= 2
+			
+			Repetir
+				Escribir "Digite el peso del lote en kilogramos"
+				Leer peso
+				
+				Si peso <= 0 Entonces
+					Escribir "Error, el peso debe ser mayor a 0"
+				FinSi
+			Hasta Que peso > 0
+			
+			Si tipo_fruta = 1 Entonces
+				tarifa = 3500
+			SiNo
+				tarifa = 2200
+			FinSi
+			
+			valor_base = peso * tarifa
+			bono = 0
+			retencion = 0
+			
+			Si tipo_fruta = 1 Entonces
+				Si peso > 500 Entonces
+					bono = valor_base * 5 / 100
+				FinSi
+			FinSi
+			
+			Si tipo_fruta = 2 Entonces
+				Si peso < 100 Entonces
+					retencion = valor_base * 3 / 100
+				FinSi
+			FinSi
+			
+			total_pagar = valor_base + bono - retencion
+			
+			total_kg = total_kg + peso
+			total_pagado = total_pagado + total_pagar
+			
+			Si peso > mayor_peso Entonces
+				mayor_peso = peso
+			FinSi
+			
+			Escribir "Valor base :", valor_base
+			Escribir "Bono :", bono
+			Escribir "Retencion :", retencion
+			Escribir "Total a pagar :", total_pagar
+		FinSi
+		
+		Si opcion = 2 Entonces
+			Escribir "Resumen del centro de acopio"
+			Escribir "Total de kilogramos recibidos: ", total_kg
+			Escribir "Total de dinero pagado: ", total_pagado
+			Escribir "Peso del lote más pesado: ", mayor_peso
+		FinSi
+		
+		Si opcion = 3 Entonces
+			Escribir "Cierre del centro de acopio"
+			Escribir "Total de kilogramos recibidos :", total_kg
+			Escribir "Total de dinero pagado :", total_pagado
+		FinSi
+		
+		Si opcion < 1 O opcion > 3 Entonces
+			Escribir "Opcion incorrecta"
+		FinSi
+		
+	Hasta Que opcion = 3
+	
+FinAlgoritmo
