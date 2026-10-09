@@ -1,0 +1,104 @@
+Algoritmo ControltaquillaCinemaMultiplex
+	Definir opcion, capacidad, tipo_cliente, cantidad Como Entero
+	Definir subtotal, descuento, total_pagar, recaudo_total Como Real
+	Definir cant_general, cant_estudiantes, cant_descuentos Como Entero
+	Repetir
+		Escribir "Ingrese la capacidad disponible de la sala (1 a 80)"
+		Leer capacidad
+		
+		Si capacidad < 1 O capacidad > 80 Entonces
+			Escribir "Error, digite un numero entre 1 y 80"
+		FinSi
+	Hasta Que capacidad >= 1 Y capacidad <= 80
+	
+	recaudo_total = 0
+	cant_general = 0
+	cant_estudiantes = 0
+	cant_descuentos = 0
+	
+	Repetir
+		Escribir "Menu Cinema Multiplex"
+		Escribir "1. Realizar venta de entradas"
+		Escribir "2. Consultar estado de la sala"
+		Escribir "3. Cierre de caja"
+		Leer opcion
+		
+		Si opcion = 1 Entonces
+			Si capacidad > 0 Entonces
+				Repetir
+					Escribir "Digite el tipo de cliente"
+					Escribir "1. General - $12000"
+					Escribir "2. Estudiante con carnet - $8000"
+					Leer tipo_cliente
+					
+					Si tipo_cliente < 1 O tipo_cliente > 2 Entonces
+						Escribir "Error, digite 1 o 2"
+					FinSi
+				Hasta Que tipo_cliente >= 1 Y tipo_cliente <= 2
+				
+				Repetir
+					Escribir "Digite la cantidad de entradas"
+					Leer cantidad
+					
+					Si cantidad <= 0 Entonces
+						Escribir "No es válido, la cantidad debe ser mayor a 0"
+					FinSi
+				Hasta Que cantidad > 0
+				
+				Si cantidad > capacidad Entonces
+					Escribir "No hay suficientes asientos disponibles"
+					Escribir "Venta cancelada"
+				SiNo
+					Si tipo_cliente = 1 Entonces
+						subtotal = cantidad * 12000
+						cant_general = cant_general + cantidad
+					SiNo
+						subtotal = cantidad * 8000
+						cant_estudiantes = cant_estudiantes + cantidad
+					FinSi
+					
+					descuento = 0
+					
+					Si cantidad >= 4 Entonces
+						descuento = subtotal * 10 / 100
+						cant_descuentos = cant_descuentos + 1
+					FinSi
+					
+					total_pagar = subtotal - descuento
+					
+					capacidad = capacidad - cantidad
+					recaudo_total = recaudo_total + total_pagar
+					
+					Escribir "Subtotal :", subtotal
+					Escribir "Descuento :", descuento
+					Escribir "Total a pagar :", total_pagar
+					Escribir "Entradas vendidas correctamente"
+				FinSi
+			SiNo
+				Escribir "La sala esta llena, no se pueden vender mas entradas"
+			FinSi
+		FinSi
+		
+		Si opcion = 2 Entonces
+			Escribir "Estado de la sala"
+			Escribir "Asientos disponibles :", capacidad
+			Escribir "Entradas generales vendidas :", cant_general
+			Escribir "Entradas de estudiantes vendidas :", cant_estudiantes
+		FinSi
+		
+		Si opcion = 3 Entonces
+			Escribir "Cierre de caja"
+			Escribir "Total recaudado :", recaudo_total
+			Escribir "Asientos restantes :", capacidad
+			Escribir "Entradas generales vendidas :", cant_general
+			Escribir "Entradas de estudiantes vendidas :", cant_estudiantes
+			Escribir "Ventas con descuento :", cant_descuentos
+		FinSi
+		
+		Si opcion < 1 O opcion > 3 Entonces
+			Escribir "Opcion incorrecta, intente de nuevo"
+		FinSi
+		
+	Hasta Que opcion = 3
+	
+FinAlgoritmo
