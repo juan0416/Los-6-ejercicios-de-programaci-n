@@ -1,0 +1,101 @@
+Algoritmo ControlconsumoenergéticoElectroValle
+	Definir opcion, tipo_predio Como Entero
+	Definir cant_residenciales, cant_comerciales Como Entero
+	Definir consumo, tarifa, valor_base, descuento, recargo, total_pagar Como Real
+	Definir total_kWh, total_facturado, consumo_maximo Como Real
+	total_kwh = 0
+	total_facturado = 0
+	consumo_maximo = 0
+	cant_residenciales = 0
+	cant_comerciales = 0
+	
+	Repetir
+		Escribir "Menú ElectroValle"
+		Escribir "1. Registrar consumo"
+		Escribir "2. Consultar reporte diario"
+		Escribir "3. Salir"
+		Leer opcion
+		
+		Si opcion = 1 Entonces
+			Repetir
+				Escribir "Digite el tipo de predio"
+				Escribir "1. Residencial"
+				Escribir "2. Comercial"
+				Leer tipo_predio
+				
+				Si tipo_predio < 1 O tipo_predio > 2 Entonces
+					Escribir "Error, porfavor digite 1 o 2"
+				FinSi
+			Hasta Que tipo_predio >= 1 Y tipo_predio <= 2
+			
+			Repetir
+				Escribir "Digite el consumo en kWh"
+				Leer consumo
+				
+				Si consumo < 0 Entonces
+					Escribir "Error, el consumo no puede ser negativo"
+				FinSi
+			Hasta Que consumo >= 0
+			
+			Si tipo_predio = 1 Entonces
+				tarifa = 600
+				cant_residenciales = cant_residenciales + 1
+			SiNo
+				tarifa = 900
+				cant_comerciales = cant_comerciales + 1
+			FinSi
+			
+			valor_base = consumo * tarifa
+			descuento = 0
+			recargo = 0
+			
+			Si tipo_predio = 1 Entonces
+				Si consumo <= 150 Entonces
+					descuento = valor_base * 12 / 100
+				FinSi
+			FinSi
+			
+			Si tipo_predio = 2 Entonces
+				Si consumo > 500 Entonces
+					recargo = valor_base * 15 / 100
+				FinSi
+			FinSi
+			
+			total_pagar = valor_base - descuento + recargo
+			
+			total_kwh = total_kwh + consumo
+			total_facturado = total_facturado + total_pagar
+			
+			Si consumo > consumo_maximo Entonces
+				consumo_maximo = consumo
+			FinSi
+			
+			Escribir "Consumo registrado :", consumo, " kWh"
+			Escribir "Valor base :", valor_base
+			Escribir "Descuento :", descuento
+			Escribir "Recargo :", recargo
+			Escribir "Total de la factura :", total_pagar
+		FinSi
+		
+		Si opcion = 2 Entonces
+			Escribir "Reporte diario de ElectroValle"
+			Escribir "Total de kWh consumidos: ", total_kwh
+			Escribir "Total facturado: ", total_facturado
+			Escribir "Predios residenciales registrados: ", cant_residenciales
+			Escribir "Predios comerciales registrados: ", cant_comerciales
+			Escribir "Consumo maximo registrado: ", consumo_maximo, " kWh"
+		FinSi
+		
+		Si opcion = 3 Entonces
+			Escribir "Cierre del sistema"
+			Escribir "Total de kWh consumidos :", total_kwh
+			Escribir "Total facturado :", total_facturado
+		FinSi
+		
+		Si opcion < 1 O opcion > 3 Entonces
+			Escribir "Opcion incorrecta, intente de nuevo"
+		FinSi
+		
+	Hasta Que opcion = 3
+	
+FinAlgoritmo
